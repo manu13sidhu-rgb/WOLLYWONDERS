@@ -233,9 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-    els.productModal?.classList.add("is-open");
-  }
-
   function closeProductModal() {
     els.productModal?.classList.remove("is-open");
   }
