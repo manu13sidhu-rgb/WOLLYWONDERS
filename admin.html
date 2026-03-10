@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#1e74ff">
+  <title>Wooly Wonders - Admin Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/images/logo-social.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="admin">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="landing.html" aria-label="Wooly Wonders Home">
+        <span class="brand-mark"><img src="assets/images/logo-social.png" alt="Wooly Wonders logo"></span>
+        <span class="brand-name"><strong>Wooly Wonders</strong> Admin</span>
+      </a>
+      <nav class="nav-links" id="navMenu">
+        <a class="nav-link" href="woolywonders.html">Store</a>
+        <a class="nav-link" href="dashboard.html">Dashboard</a>
+        <a class="nav-link is-active" href="admin.html">Admin Studio</a>
+        <button class="btn btn-outline nav-link-mobile" data-signout type="button" style="display:none;">Sign Out</button>
+      </nav>
+      <button class="btn btn-outline hide-mobile" data-signout type="button">Sign Out</button>
+      <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="shell admin-shell">
+    <section class="reveal">
+      <span class="badge">Control center</span>
+      <h1 class="hero-title" style="margin-top:12px;font-size:clamp(2rem,4vw,3.4rem);">Welcome back, <span id="adminName">Admin</span>.</h1>
+      <p class="section-copy" style="margin-top:8px;max-width:70ch;">Manage inventory, refresh hero messaging, and monitor order performance in one place.</p>
+    </section>
+
+    <section class="stats-grid reveal">
+      <article class="kpi"><div id="metricProducts" class="value">0</div><div class="label">Products</div></article>
+      <article class="kpi"><div id="metricAvg" class="value">$0.00</div><div class="label">Avg Price</div></article>
+      <article class="kpi"><div id="metricOrders" class="value">0</div><div class="label">Orders</div></article>
+      <article class="kpi"><div id="metricRevenue" class="value">$0.00</div><div class="label">Revenue</div></article>
+    </section>
+
+    <section class="split reveal">
+      <div class="hero-editor">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+          <h2 style="font-size:1.2rem;">Category value snapshot</h2>
+          <a class="btn btn-outline" href="dashboard.html">Open full dashboard</a>
+        </div>
+        <div class="canvas" style="margin-top:12px;">
+          <div id="salesChart" class="chart"></div>
+        </div>
+      </div>
+
+      <aside class="quick-panel">
+        <h2 style="font-size:1.1rem;">Latest orders</h2>
+        <div id="latestOrders" style="margin-top:10px;display:grid;gap:8px;"></div>
+      </aside>
+    </section>
+
+    <section class="reveal">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+        <h2 class="section-title" style="font-size:clamp(1.6rem,3vw,2.2rem);">Product inventory</h2>
+        <button id="addProductBtn" class="btn btn-primary magnetic" type="button">Add Product</button>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Badge</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Store hero editor</h2>
+      <p class="mini" style="margin-top:8px;">Changes here instantly update the storefront headline and CTA.</p>
+      <form id="heroForm" style="margin-top:12px;display:grid;gap:10px;">
+        <div class="field">
+          <label for="hBadge">Badge</label>
+          <input id="hBadge" class="input" required>
+        </div>
+        <div class="field">
+          <label for="hLine1">Headline Line 1</label>
+          <input id="hLine1" class="input" required>
+        </div>
+        <div class="field">
+          <label for="hLine2">Headline Line 2</label>
+          <input id="hLine2" class="input" required>
+        </div>
+        <div class="field">
+          <label for="hSub">Subtext</label>
+          <textarea id="hSub" class="textarea" required></textarea>
+        </div>
+        <div class="checkout-grid">
+          <div class="field">
+            <label for="hCta">Primary CTA</label>
+            <input id="hCta" class="input" required>
+          </div>
+          <div class="field">
+            <label for="hCta2">Secondary CTA</label>
+            <input id="hCta2" class="input" required>
+          </div>
+        </div>
+        <button class="btn btn-primary magnetic" type="submit">Save Hero Content</button>
+      </form>
+    </section>
+  </main>
+
+  <div id="productModal" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+      <div class="modal-head">
+        <strong id="productModalTitle" class="modal-title">Add Product</strong>
+        <button id="closeProductModal" class="modal-close" type="button" aria-label="Close modal">?</button>
+      </div>
+      <div class="modal-body">
+        <form id="productForm" class="grid" style="gap:12px;">
+          <input id="productId" type="hidden">
+          <div class="field">
+            <label for="pName">Name</label>
+            <input id="pName" class="input" required>
+          </div>
+          <div class="checkout-grid">
+            <div class="field">
+              <label for="pCat">Category</label>
+              <select id="pCat" class="select" required>
+                <option value="Knit Caps">Knit Caps</option>
+                <option value="Booties">Booties</option>
+                <option value="Headbands">Headbands</option>
+                <option value="Gift Sets">Gift Sets</option>
+                <option value="Mittens">Mittens</option>
+                <option value="Sweaters">Sweaters</option>
+                <option value="Rompers">Rompers</option>
+                <option value="Hair Accessories">Hair Accessories</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="pPrice">Price</label>
+              <input id="pPrice" class="input" type="number" min="0" step="0.01" required>
+            </div>
+            <div class="field">
+              <label for="pBadge">Badge</label>
+              <select id="pBadge" class="select">
+                <option value="">None</option>
+                <option value="new">New</option>
+                <option value="hot">Hot</option>
+                <option value="save">Save</option>
+                <option value="limited">Limited</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="pEmoji">Emoji</label>
+              <input id="pEmoji" class="input" placeholder="CAP">
+            </div>
+            <div class="field">
+              <label for="pColor">Card Color</label>
+              <input id="pColor" class="input" type="color" value="#eef4ff">
+            </div>
+            <div class="field">
+              <label for="pStock">Stock</label>
+              <input id="pStock" class="input" type="number" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label for="pRating">Rating (1-5)</label>
+              <input id="pRating" class="input" type="number" min="1" max="5" step="0.1" value="4.8">
+            </div>
+            <div class="field">
+              <label for="pReviews">Reviews #</label>
+              <input id="pReviews" class="input" type="number" min="0" step="1" value="0">
+            </div>
+          </div>
+          <div class="field">
+            <label>Product Image</label>
+            <div id="pImagePicker" class="image-picker-grid"></div>
+            <input id="pImage" type="hidden">
+          </div>
+          <div class="field">
+            <label for="pDesc">Description</label>
+            <textarea id="pDesc" class="textarea"></textarea>
+          </div>
+          <button class="btn btn-primary magnetic" type="submit">Save Product</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/ww-data.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/service-worker.js');}</script>
+</body>
+</html>
+

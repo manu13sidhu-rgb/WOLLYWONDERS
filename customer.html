@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#1e74ff">
+  <title>Wooly Wonders - Customer Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/images/logo-social.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="customer">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="landing.html" aria-label="Wooly Wonders Home">
+        <span class="brand-mark"><img src="assets/images/logo-social.png" alt="Wooly Wonders logo"></span>
+        <span class="brand-name"><strong>Wooly Wonders</strong> Account</span>
+      </a>
+      <nav class="nav-links" id="navMenu">
+        <a class="nav-link" href="landing.html">Home</a>
+        <a class="nav-link" href="woolywonders.html#catalog">All Products</a>
+        <a class="nav-link is-active" href="customer.html">Account</a>
+        <button class="btn btn-outline nav-link-mobile" data-signout type="button" style="display:none;">Sign Out</button>
+      </nav>
+      <button class="btn btn-outline hide-mobile" data-signout type="button">Sign Out</button>
+      <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="shell customer-shell">
+    <aside class="side-panel reveal">
+      <div id="avatarInitials" class="profile-avatar">WW</div>
+      <h2 id="customerName">Guest User</h2>
+      <p id="customerEmail">guest@example.com</p>
+
+      <div class="side-menu">
+        <a href="woolywonders.html">Continue Shopping</a>
+        <a href="landing.html">View New Drops</a>
+        <button type="button" data-signout>Sign Out</button>
+      </div>
+    </aside>
+
+    <section class="account-main">
+      <div class="grid stats-grid reveal" style="grid-template-columns:repeat(3,minmax(0,1fr));">
+        <article class="kpi">
+          <div id="statOrders" class="value">0</div>
+          <div class="label">Total Orders</div>
+        </article>
+        <article class="kpi">
+          <div id="statSpend" class="value">$0.00</div>
+          <div class="label">Total Spend</div>
+        </article>
+        <article class="kpi">
+          <div id="statLast" class="value" style="font-size:1rem;">No orders yet</div>
+          <div class="label">Last Purchase</div>
+        </article>
+      </div>
+
+      <section class="hero-editor reveal">
+        <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2.2rem);">Recent orders</h2>
+        <p class="section-copy" style="margin-top:8px;">Your order timeline updates automatically after each checkout.</p>
+        <div id="ordersList" class="order-list" style="margin-top:14px;"></div>
+      </section>
+
+      <section class="hero-editor reveal">
+        <h2 style="font-size:1.2rem;">Delivery preferences</h2>
+        <p class="mini" style="margin-top:6px;">Save notes for your next purchase.</p>
+        <form id="profileForm" style="margin-top:12px;display:grid;gap:10px;">
+          <div class="field">
+            <label for="giftNote">Gift Note</label>
+            <textarea id="giftNote" class="textarea" placeholder="Write a note for gift packaging..."></textarea>
+          </div>
+          <div class="field">
+            <label for="deliveryWindow">Preferred Delivery Window</label>
+            <select id="deliveryWindow" class="select">
+              <option>Morning (8am - 12pm)</option>
+              <option>Afternoon (12pm - 5pm)</option>
+              <option>Evening (5pm - 9pm)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary magnetic" type="submit">Save Preferences</button>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/ww-data.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/customer.js"></script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/service-worker.js');}</script>
+</body>
+</html>
+
+

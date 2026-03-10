@@ -1,0 +1,20 @@
+{
+  "name": "Wooly Wonders - Handcrafted Baby Essentials",
+  "short_name": "Wooly Wonders",
+  "description": "Handcrafted wool essentials for newborns. Premium knit caps, booties, gift sets and more.",
+  "start_url": "/landing.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#1e74ff",
+  "orientation": "any",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "assets/images/logo-social.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

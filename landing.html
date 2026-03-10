@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Wooly Wonders - Handcrafted wool essentials for newborns. Premium knit caps, booties, gift sets and more.">
+  <meta name="theme-color" content="#1e74ff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Wooly Wonders - 2026 Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/images/logo-social.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body data-page="landing">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="landing.html" aria-label="Wooly Wonders Home">
+        <span class="brand-mark"><img src="assets/images/logo-social.png" alt="Wooly Wonders logo"></span>
+        <span class="brand-name"><strong>Wooly Wonders</strong> 2026</span>
+      </a>
+      <nav class="nav-links" id="navMenu">
+        <a class="nav-link is-active" href="landing.html">Home</a>
+        <a class="nav-link" href="woolywonders.html#catalog">All Products</a>
+        <a class="nav-link" href="customer.html">Account</a>
+        <a class="nav-link" href="#lookbook">Lookbook</a>
+        <a class="nav-link" href="#concierge">Concierge</a>
+        <a class="btn btn-primary magnetic nav-link-mobile" href="auth.html" style="display:none;">Sign In</a>
+      </nav>
+      <a class="btn btn-primary magnetic hide-mobile" href="auth.html">Sign In</a>
+      <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="landing-hero section cinematic-hero">
+      <canvas id="heroParticles" class="hero-particle-canvas" aria-hidden="true"></canvas>
+      <div class="shell hero-grid">
+        <div class="hero-copy reveal intro-rise">
+          <span id="heroBadge" class="badge">2026 atelier release</span>
+          <h1 class="hero-title split-title">
+            <span id="heroLine1">Designed for gentle beginnings</span><br>
+            <span id="heroLine2">Naturally soft, proudly handmade</span>
+          </h1>
+          <p id="heroSub">Breathable wool essentials crafted for newborn comfort and modern nursery style.</p>
+          <div class="hero-actions">
+            <a id="heroCta" class="btn btn-primary magnetic" href="woolywonders.html#catalog">Shop the Collection</a>
+            <button class="btn btn-outline" data-jump="lookbook">Watch the Lookbook</button>
+          </div>
+          <div class="hero-metrics">
+            <div class="kpi">
+              <div class="value" data-count="4600">0</div>
+              <div class="label">Happy Families</div>
+            </div>
+            <div class="kpi">
+              <div class="value" data-count="98">0</div>
+              <div class="label">Satisfaction %</div>
+            </div>
+            <div class="kpi">
+              <div class="value" data-count="42">0</div>
+              <div class="label">Artisan Partners</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media reveal">
+          <div class="hero-image-wrap tilt-card">
+            <img src="assets/images/hero/hero-alt.webp" alt="Wooly Wonders hero image">
+          </div>
+          <aside class="floating-note reveal">
+            <div class="label">Signature Drop</div>
+            <div class="value">Nordic Storyline Set</div>
+            <p class="mini" style="margin-top:8px;">Limited handcrafted release with recyclable gift packaging.</p>
+          </aside>
+          <div class="orbit-chip orbit-chip-a" data-parallax="0.02">Merino Blend</div>
+          <div class="orbit-chip orbit-chip-b" data-parallax="0.03">Gift Ready</div>
+          <div class="orbit-chip orbit-chip-c" data-parallax="0.025">Studio Curated</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ticker-wrap reveal">
+      <div class="ticker-track" id="proofTicker">
+        <span>Handcrafted in small batches</span>
+        <span>Hypoallergenic merino yarns</span>
+        <span>Global shipping in 4-8 days</span>
+        <span>4.9 average parent rating</span>
+        <span>Personalized gift note on request</span>
+        <span>Handcrafted in small batches</span>
+        <span>Hypoallergenic merino yarns</span>
+        <span>Global shipping in 4-8 days</span>
+        <span>4.9 average parent rating</span>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="shell">
+        <div class="reveal">
+          <h2 class="section-title">Premium detail, quiet confidence, and motion that feels alive.</h2>
+          <p class="section-copy" style="margin-top:12px;max-width:70ch;">Inspired by modern AI websites and luxury editorial brands, this experience blends clean white surfaces with kinetic depth and soft atmosphere.</p>
+        </div>
+        <div class="grid feature-cards">
+          <article class="feature-card card reveal tilt-card">
+            <div class="icon">MW</div>
+            <h3>100% Merino Comfort</h3>
+            <p>Every piece uses breathable fibers selected for newborn-safe softness and thermal balance.</p>
+          </article>
+          <article class="feature-card card reveal tilt-card">
+            <div class="icon">FX</div>
+            <h3>Faster Fulfillment</h3>
+            <p>Smart stock routing keeps dispatch faster and more predictable for urgent gift moments.</p>
+          </article>
+          <article class="feature-card card reveal tilt-card">
+            <div class="icon">GF</div>
+            <h3>Gift-First Packaging</h3>
+            <p>Each order includes premium wrap options and custom message cards for memorable unboxing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="lookbook" class="section lookbook-section">
+      <div class="shell">
+        <div class="reveal" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:end;">
+          <div>
+            <h2 class="section-title">Interactive lookbook studio</h2>
+            <p class="section-copy" style="margin-top:10px;max-width:62ch;">Tap any frame to switch the hero scene. This gives your store a richer, editorial feel with real photos from your collection.</p>
+          </div>
+          <a class="btn btn-soft" href="woolywonders.html#catalog">View all products</a>
+        </div>
+
+        <div class="lookbook-grid reveal">
+          <div class="lookbook-main card tilt-card">
+            <img id="lookbookMain" src="assets/images/products/IMG_2251.JPG" alt="Lookbook feature image">
+            <div class="lookbook-caption-wrap">
+              <strong id="lookbookCaption">Winter Capsule - Minimal Ivory Mood</strong>
+              <p class="mini">Curated pairing for neutral nurseries and timeless photography.</p>
+            </div>
+          </div>
+
+          <div class="lookbook-thumbs" id="lookbookThumbs">
+            <button class="lookbook-thumb is-active" data-lookbook-src="assets/images/products/IMG_2251.JPG" data-lookbook-caption="Winter Capsule - Minimal Ivory Mood" type="button"><img src="assets/images/products/IMG_2251.JPG" alt="Lookbook thumb 1"></button>
+            <button class="lookbook-thumb" data-lookbook-src="assets/images/products/IMG_2254.JPG" data-lookbook-caption="Soft Blush Story - Limited Holiday Pair" type="button"><img src="assets/images/products/IMG_2254.JPG" alt="Lookbook thumb 2"></button>
+            <button class="lookbook-thumb" data-lookbook-src="assets/images/products/IMG_2261.JPG" data-lookbook-caption="Cloud Knit Essential - Everyday Set" type="button"><img src="assets/images/products/IMG_2261.JPG" alt="Lookbook thumb 3"></button>
+            <button class="lookbook-thumb" data-lookbook-src="assets/images/products/IMG_2267.JPG" data-lookbook-caption="Pastel Layer Edit - Cozy Weekend Drop" type="button"><img src="assets/images/products/IMG_2267.JPG" alt="Lookbook thumb 4"></button>
+            <button class="lookbook-thumb" data-lookbook-src="assets/images/products/11.webp" data-lookbook-caption="Funkrafts Pop - Playful Color Release" type="button"><img src="assets/images/products/11.webp" alt="Lookbook thumb 5"></button>
+            <button class="lookbook-thumb" data-lookbook-src="assets/images/products/Pink and blue.webp" data-lookbook-caption="Pink-Blue Duo - Gift Favorite" type="button"><img src="assets/images/products/Pink and blue.webp" alt="Lookbook thumb 6"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="concierge" class="section concierge-section">
+      <div class="shell">
+        <div class="cta-band reveal concierge-band">
+          <div>
+            <h2>AI Gift Concierge</h2>
+            <p>Answer three quick choices and we will guide you to the best category instantly.</p>
+          </div>
+          <form id="conciergeForm" class="concierge-form">
+            <select id="ccAge" class="select" required>
+              <option value="">Baby age</option>
+              <option value="newborn">0-3 months</option>
+              <option value="infant">3-9 months</option>
+              <option value="toddler">9-18 months</option>
+            </select>
+            <select id="ccMood" class="select" required>
+              <option value="">Style vibe</option>
+              <option value="minimal">Minimal and neutral</option>
+              <option value="playful">Playful colors</option>
+              <option value="gift">Luxury gifting</option>
+            </select>
+            <select id="ccBudget" class="select" required>
+              <option value="">Budget</option>
+              <option value="under40">Under $40</option>
+              <option value="40to70">$40-$70</option>
+              <option value="premium">$70+</option>
+            </select>
+            <button class="btn btn-primary magnetic" type="submit">Get Recommendation</button>
+          </form>
+        </div>
+        <div id="conciergeResult" class="concierge-result card reveal" hidden></div>
+      </div>
+    </section>
+
+    <section id="stories" class="section" style="margin-top:40px;">
+      <div class="shell">
+        <div class="reveal">
+          <h2 class="section-title">What parents say after switching to Wooly Wonders</h2>
+        </div>
+        <div class="grid quote-row">
+          <article class="quote-card card reveal">
+            <p>"The comfort is unreal. Our baby sleeps longer in the merino bonnet than any other cap we tried."</p>
+            <span class="quote-author">Alyssa - Sydney</span>
+          </article>
+          <article class="quote-card card reveal">
+            <p>"The motion and layout feel premium. It finally looks like a polished modern brand."</p>
+            <span class="quote-author">Nia - Melbourne</span>
+          </article>
+          <article class="quote-card card reveal">
+            <p>"Gift set quality is next-level. We now keep one ready for every baby shower."</p>
+            <span class="quote-author">Eva - Brisbane</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="cta-band reveal">
+          <div>
+            <h2>Join the launch circle</h2>
+            <p>Get early previews of new drops, limited bundles, and styling inspiration every week.</p>
+          </div>
+          <form id="newsletterForm">
+            <input id="newsletterEmail" type="email" placeholder="you@example.com" aria-label="Email address">
+            <button class="btn btn-primary magnetic" type="submit">Join list</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-note">(c) <span id="yearNow">2026</span> Wooly Wonders. Crafted with heart for little beginnings.</footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/ww-data.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/landing.js"></script>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/service-worker.js');}</script>
+</body>
+</html>
+
