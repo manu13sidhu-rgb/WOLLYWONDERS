@@ -5,7 +5,8 @@
     products: "ww_products",
     hero: "ww_hero",
     orders: "ww_orders",
-    cart: "ww_cart"
+    cart: "ww_cart",
+    landing: "ww_landing"
   };
 
   const PRODUCT_IMAGES = [
@@ -56,6 +57,37 @@
     sub: "Breathable wool essentials crafted for newborn comfort and modern nursery style.",
     cta: "Shop the Collection",
     cta2: "See Story"
+  };
+
+  const DEFAULT_LANDING = {
+    features: [
+      { icon: "MW", title: "100% Merino Comfort", desc: "Every piece uses breathable fibers selected for newborn-safe softness and thermal balance." },
+      { icon: "FX", title: "Faster Fulfillment", desc: "Smart stock routing keeps dispatch faster and more predictable for urgent gift moments." },
+      { icon: "GF", title: "Gift-First Packaging", desc: "Each order includes premium wrap options and custom message cards for memorable unboxing." }
+    ],
+    featuresTitle: "Premium detail, quiet confidence, and motion that feels alive.",
+    featuresSub: "Inspired by modern AI websites and luxury editorial brands, this experience blends clean white surfaces with kinetic depth and soft atmosphere.",
+    stats: [
+      { value: 4600, label: "Happy Families" },
+      { value: 98, label: "Satisfaction %" },
+      { value: 42, label: "Artisan Partners" }
+    ],
+    ticker: [
+      "Handcrafted in small batches",
+      "Hypoallergenic merino yarns",
+      "Global shipping in 4-8 days",
+      "4.9 average parent rating",
+      "Personalized gift note on request"
+    ],
+    testimonials: [
+      { quote: "The comfort is unreal. Our baby sleeps longer in the merino bonnet than any other cap we tried.", author: "Alyssa - Sydney" },
+      { quote: "The motion and layout feel premium. It finally looks like a polished modern brand.", author: "Nia - Melbourne" },
+      { quote: "Gift set quality is next-level. We now keep one ready for every baby shower.", author: "Eva - Brisbane" }
+    ],
+    testimonialsTitle: "What parents say after switching to Wooly Wonders",
+    ctaTitle: "Join the launch circle",
+    ctaSub: "Get early previews of new drops, limited bundles, and styling inspiration every week.",
+    footer: "Crafted with heart for little beginnings."
   };
 
   function safeParse(raw, fallback) {
@@ -109,6 +141,7 @@
     ensure(KEYS.products, DEFAULT_PRODUCTS);
     ensure(KEYS.hero, DEFAULT_HERO);
     ensure(KEYS.orders, []);
+    ensure(KEYS.landing, DEFAULT_LANDING);
   }
 
   function sanitizeUser(user) {
@@ -150,6 +183,14 @@
       ...DEFAULT_HERO,
       ...hero
     });
+  }
+
+  function getLanding() {
+    return read(KEYS.landing, DEFAULT_LANDING);
+  }
+
+  function saveLanding(data) {
+    save(KEYS.landing, { ...DEFAULT_LANDING, ...data });
   }
 
   function getOrders() {
@@ -231,12 +272,15 @@
     PRODUCT_IMAGES,
     DEFAULT_PRODUCTS,
     DEFAULT_HERO,
+    DEFAULT_LANDING,
     getUsers,
     saveUsers,
     getProducts,
     saveProducts,
     getHero,
     saveHero,
+    getLanding,
+    saveLanding,
     getOrders,
     saveOrders,
     addOrder,

@@ -120,6 +120,81 @@
         <button class="btn btn-primary magnetic" type="submit">Save Hero Content</button>
       </form>
     </section>
+
+    <!-- ===== FEATURE CARDS EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Feature boxes editor</h2>
+      <p class="mini" style="margin-top:8px;">Edit the three feature cards shown on the landing page.</p>
+      <div style="margin-top:12px;">
+        <div class="field">
+          <label for="featTitle">Section heading</label>
+          <input id="featTitle" class="input" required>
+        </div>
+        <div class="field" style="margin-top:8px;">
+          <label for="featSub">Section subtext</label>
+          <textarea id="featSub" class="textarea"></textarea>
+        </div>
+      </div>
+      <div id="featureEditors" style="margin-top:16px;display:grid;gap:16px;"></div>
+      <button id="saveFeatures" class="btn btn-primary magnetic" type="button" style="margin-top:12px;">Save Feature Boxes</button>
+    </section>
+
+    <!-- ===== STATS EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Hero stats editor</h2>
+      <p class="mini" style="margin-top:8px;">Edit the counter numbers shown in the hero section (e.g. Happy Families, Satisfaction %).</p>
+      <div id="statsEditors" style="margin-top:12px;display:grid;gap:12px;"></div>
+      <button id="saveStats" class="btn btn-primary magnetic" type="button" style="margin-top:12px;">Save Stats</button>
+    </section>
+
+    <!-- ===== TICKER EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Scrolling ticker editor</h2>
+      <p class="mini" style="margin-top:8px;">Edit the scrolling marquee messages below the hero.</p>
+      <div id="tickerEditors" style="margin-top:12px;display:grid;gap:8px;"></div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button id="addTicker" class="btn btn-outline" type="button">+ Add Message</button>
+        <button id="saveTicker" class="btn btn-primary magnetic" type="button">Save Ticker</button>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Testimonials editor</h2>
+      <p class="mini" style="margin-top:8px;">Edit the customer quotes on the landing page.</p>
+      <div class="field" style="margin-top:12px;">
+        <label for="testimonialsTitle">Section heading</label>
+        <input id="testimonialsTitle" class="input">
+      </div>
+      <div id="testimonialEditors" style="margin-top:12px;display:grid;gap:14px;"></div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button id="addTestimonial" class="btn btn-outline" type="button">+ Add Quote</button>
+        <button id="saveTestimonials" class="btn btn-primary magnetic" type="button">Save Testimonials</button>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER / CTA EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Footer &amp; CTA editor</h2>
+      <p class="mini" style="margin-top:8px;">Edit the newsletter call-to-action and footer text.</p>
+      <form id="footerForm" style="margin-top:12px;display:grid;gap:10px;">
+        <div class="checkout-grid">
+          <div class="field">
+            <label for="ctaTitle">CTA Heading</label>
+            <input id="ctaTitle" class="input" required>
+          </div>
+          <div class="field">
+            <label for="ctaSub">CTA Subtext</label>
+            <input id="ctaSub" class="input" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="footerText">Footer text</label>
+          <input id="footerText" class="input" required>
+        </div>
+        <button class="btn btn-primary magnetic" type="submit">Save Footer &amp; CTA</button>
+      </form>
+    </section>
   </main>
 
   <div id="productModal" class="modal-backdrop">

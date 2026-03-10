@@ -19,6 +19,84 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroSub) heroSub.textContent = hero.sub;
   if (heroCta) heroCta.textContent = hero.cta;
 
+  /* ---- Hydrate landing page from editable data ---- */
+  const landing = WWData.getLanding();
+
+  // Feature cards
+  const featureCards = WWUI.qsa(".feature-card");
+  const features = landing.features || [];
+  featureCards.forEach((card, i) => {
+    if (!features[i]) return;
+    const iconEl = card.querySelector(".icon");
+    const h3 = card.querySelector("h3");
+    const p = card.querySelector("p");
+    if (iconEl) iconEl.textContent = features[i].icon;
+    if (h3) h3.textContent = features[i].title;
+    if (p) p.textContent = features[i].desc;
+  });
+  // Features section heading
+  const featSection = WWUI.qs("#features");
+  if (featSection) {
+    const fTitle = featSection.querySelector(".section-title");
+    const fSub = featSection.querySelector(".section-copy");
+    if (fTitle && landing.featuresTitle) fTitle.textContent = landing.featuresTitle;
+    if (fSub && landing.featuresSub) fSub.textContent = landing.featuresSub;
+  }
+
+  // Stats
+  const statKpis = WWUI.qsa(".hero-metrics .kpi");
+  const stats = landing.stats || [];
+  statKpis.forEach((kpi, i) => {
+    if (!stats[i]) return;
+    const valEl = kpi.querySelector(".value");
+    const labelEl = kpi.querySelector(".label");
+    if (valEl) valEl.dataset.count = String(stats[i].value);
+    if (labelEl) labelEl.textContent = stats[i].label;
+  });
+
+  // Ticker
+  const tickerTrack = WWUI.qs("#proofTicker");
+  if (tickerTrack && landing.ticker && landing.ticker.length) {
+    tickerTrack.innerHTML = "";
+    const msgs = landing.ticker;
+    // Duplicate for seamless scroll
+    [...msgs, ...msgs].forEach((msg) => {
+      const span = document.createElement("span");
+      span.textContent = msg;
+      tickerTrack.appendChild(span);
+    });
+  }
+
+  // Testimonials
+  const quoteRow = WWUI.qs(".quote-row");
+  const storiesSection = WWUI.qs("#stories");
+  if (storiesSection && landing.testimonialsTitle) {
+    const stTitle = storiesSection.querySelector(".section-title");
+    if (stTitle) stTitle.textContent = landing.testimonialsTitle;
+  }
+  if (quoteRow && landing.testimonials && landing.testimonials.length) {
+    quoteRow.innerHTML = "";
+    landing.testimonials.forEach((t) => {
+      const article = document.createElement("article");
+      article.className = "quote-card card reveal";
+      article.innerHTML = `<p>"${t.quote}"</p><span class="quote-author">${t.author}</span>`;
+      quoteRow.appendChild(article);
+    });
+  }
+
+  // CTA / Footer
+  const ctaBand = WWUI.qs(".cta-band");
+  if (ctaBand) {
+    const h2 = ctaBand.querySelector("h2");
+    const p = ctaBand.querySelector("p");
+    if (h2 && landing.ctaTitle) h2.textContent = landing.ctaTitle;
+    if (p && landing.ctaSub) p.textContent = landing.ctaSub;
+  }
+  const footerNote = WWUI.qs(".footer-note");
+  if (footerNote && landing.footer) {
+    footerNote.innerHTML = `&copy; <span id="yearNow">${new Date().getFullYear()}</span> Wooly Wonders. ${landing.footer}`;
+  }
+
   WWUI.qsa("[data-jump]").forEach((button) => {
     button.addEventListener("click", () => {
       const target = document.getElementById(button.dataset.jump || "");

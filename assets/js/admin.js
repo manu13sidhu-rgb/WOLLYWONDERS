@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const state = {
     products: WWData.getProducts(),
     hero: WWData.getHero(),
+    landing: WWData.getLanding(),
     editingId: null
   };
 
@@ -47,7 +48,24 @@ document.addEventListener("DOMContentLoaded", () => {
     hSub: WWUI.qs("#hSub"),
     hCta: WWUI.qs("#hCta"),
     hCta2: WWUI.qs("#hCta2"),
-    latestOrders: WWUI.qs("#latestOrders")
+    latestOrders: WWUI.qs("#latestOrders"),
+    featTitle: WWUI.qs("#featTitle"),
+    featSub: WWUI.qs("#featSub"),
+    featureEditors: WWUI.qs("#featureEditors"),
+    saveFeatures: WWUI.qs("#saveFeatures"),
+    statsEditors: WWUI.qs("#statsEditors"),
+    saveStats: WWUI.qs("#saveStats"),
+    tickerEditors: WWUI.qs("#tickerEditors"),
+    addTicker: WWUI.qs("#addTicker"),
+    saveTicker: WWUI.qs("#saveTicker"),
+    testimonialsTitle: WWUI.qs("#testimonialsTitle"),
+    testimonialEditors: WWUI.qs("#testimonialEditors"),
+    addTestimonial: WWUI.qs("#addTestimonial"),
+    saveTestimonials: WWUI.qs("#saveTestimonials"),
+    footerForm: WWUI.qs("#footerForm"),
+    ctaTitle: WWUI.qs("#ctaTitle"),
+    ctaSub: WWUI.qs("#ctaSub"),
+    footerText: WWUI.qs("#footerText")
   };
 
   function ordersSummary() {
@@ -189,6 +207,179 @@ document.addEventListener("DOMContentLoaded", () => {
     els.hCta2.value = state.hero.cta2 || "";
   }
 
+  /* ---- Landing page editors ---- */
+
+  function renderFeatureEditors() {
+    if (!els.featureEditors) return;
+    els.featTitle.value = state.landing.featuresTitle || "";
+    els.featSub.value = state.landing.featuresSub || "";
+    els.featureEditors.innerHTML = "";
+    (state.landing.features || []).forEach((f, i) => {
+      const card = document.createElement("div");
+      card.className = "kpi";
+      card.style.padding = "14px";
+      card.innerHTML = `
+        <strong style="margin-bottom:8px;display:block;">Card ${i + 1}</strong>
+        <div class="checkout-grid">
+          <div class="field"><label>Icon text</label><input class="input feat-icon" value="${f.icon || ""}" maxlength="4"></div>
+          <div class="field"><label>Title</label><input class="input feat-title" value="${f.title || ""}"></div>
+        </div>
+        <div class="field" style="margin-top:6px;"><label>Description</label><textarea class="textarea feat-desc">${f.desc || ""}</textarea></div>
+      `;
+      els.featureEditors.appendChild(card);
+    });
+  }
+
+  function readFeatures() {
+    const cards = WWUI.qsa(".kpi", els.featureEditors);
+    return cards.map((card) => ({
+      icon: card.querySelector(".feat-icon")?.value.trim() || "W",
+      title: card.querySelector(".feat-title")?.value.trim() || "",
+      desc: card.querySelector(".feat-desc")?.value.trim() || ""
+    }));
+  }
+
+  function renderStatsEditors() {
+    if (!els.statsEditors) return;
+    els.statsEditors.innerHTML = "";
+    (state.landing.stats || []).forEach((s, i) => {
+      const row = document.createElement("div");
+      row.className = "checkout-grid";
+      row.innerHTML = `
+        <div class="field"><label>Value ${i + 1}</label><input class="input stat-val" type="number" value="${s.value || 0}"></div>
+        <div class="field"><label>Label</label><input class="input stat-label" value="${s.label || ""}"></div>
+      `;
+      els.statsEditors.appendChild(row);
+    });
+  }
+
+  function readStats() {
+    const rows = WWUI.qsa(".checkout-grid", els.statsEditors);
+    return rows.map((row) => ({
+      value: Number(row.querySelector(".stat-val")?.value) || 0,
+      label: row.querySelector(".stat-label")?.value.trim() || ""
+    }));
+  }
+
+  function renderTickerEditors() {
+    if (!els.tickerEditors) return;
+    els.tickerEditors.innerHTML = "";
+    (state.landing.ticker || []).forEach((msg, i) => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;gap:8px;align-items:center;";
+      row.innerHTML = `
+        <input class="input ticker-msg" value="${msg}" style="flex:1;">
+        <button class="icon-btn ticker-del" type="button" title="Remove">X</button>
+      `;
+      row.querySelector(".ticker-del").addEventListener("click", () => {
+        state.landing.ticker.splice(i, 1);
+        renderTickerEditors();
+      });
+      els.tickerEditors.appendChild(row);
+    });
+  }
+
+  function readTicker() {
+    return WWUI.qsa(".ticker-msg", els.tickerEditors).map((el) => el.value.trim()).filter(Boolean);
+  }
+
+  function renderTestimonialEditors() {
+    if (!els.testimonialEditors) return;
+    els.testimonialsTitle.value = state.landing.testimonialsTitle || "";
+    els.testimonialEditors.innerHTML = "";
+    (state.landing.testimonials || []).forEach((t, i) => {
+      const card = document.createElement("div");
+      card.className = "kpi";
+      card.style.padding = "14px";
+      card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <strong>Quote ${i + 1}</strong>
+          <button class="icon-btn test-del" type="button" title="Remove">X</button>
+        </div>
+        <div class="field" style="margin-top:8px;"><label>Quote</label><textarea class="textarea test-quote">${t.quote || ""}</textarea></div>
+        <div class="field" style="margin-top:6px;"><label>Author</label><input class="input test-author" value="${t.author || ""}"></div>
+      `;
+      card.querySelector(".test-del").addEventListener("click", () => {
+        state.landing.testimonials.splice(i, 1);
+        renderTestimonialEditors();
+      });
+      els.testimonialEditors.appendChild(card);
+    });
+  }
+
+  function readTestimonials() {
+    const cards = WWUI.qsa(".kpi", els.testimonialEditors);
+    return cards.map((card) => ({
+      quote: card.querySelector(".test-quote")?.value.trim() || "",
+      author: card.querySelector(".test-author")?.value.trim() || ""
+    })).filter((t) => t.quote);
+  }
+
+  function syncFooterForm() {
+    if (!els.footerForm) return;
+    els.ctaTitle.value = state.landing.ctaTitle || "";
+    els.ctaSub.value = state.landing.ctaSub || "";
+    els.footerText.value = state.landing.footer || "";
+  }
+
+  function renderLandingEditors() {
+    renderFeatureEditors();
+    renderStatsEditors();
+    renderTickerEditors();
+    renderTestimonialEditors();
+    syncFooterForm();
+  }
+
+  /* ---- Landing editor event handlers ---- */
+
+  els.saveFeatures?.addEventListener("click", () => {
+    state.landing.features = readFeatures();
+    state.landing.featuresTitle = els.featTitle.value.trim();
+    state.landing.featuresSub = els.featSub.value.trim();
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Feature boxes saved.");
+  });
+
+  els.saveStats?.addEventListener("click", () => {
+    state.landing.stats = readStats();
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Stats saved.");
+  });
+
+  els.addTicker?.addEventListener("click", () => {
+    state.landing.ticker = state.landing.ticker || [];
+    state.landing.ticker.push("New message");
+    renderTickerEditors();
+  });
+
+  els.saveTicker?.addEventListener("click", () => {
+    state.landing.ticker = readTicker();
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Ticker saved.");
+  });
+
+  els.addTestimonial?.addEventListener("click", () => {
+    state.landing.testimonials = state.landing.testimonials || [];
+    state.landing.testimonials.push({ quote: "", author: "" });
+    renderTestimonialEditors();
+  });
+
+  els.saveTestimonials?.addEventListener("click", () => {
+    state.landing.testimonials = readTestimonials();
+    state.landing.testimonialsTitle = els.testimonialsTitle.value.trim();
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Testimonials saved.");
+  });
+
+  els.footerForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    state.landing.ctaTitle = els.ctaTitle.value.trim();
+    state.landing.ctaSub = els.ctaSub.value.trim();
+    state.landing.footer = els.footerText.value.trim();
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Footer & CTA saved.");
+  });
+
   function openProductModal(product = null) {
     state.editingId = product?.id || null;
     if (els.productModalTitle) {
@@ -243,6 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProducts();
     renderOrders();
     syncHeroForm();
+    renderLandingEditors();
   }
 
   els.addProductBtn?.addEventListener("click", () => openProductModal());
