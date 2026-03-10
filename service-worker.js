@@ -1,24 +1,24 @@
-const CACHE_NAME = 'wooly-wonders-v1';
+const CACHE_NAME = 'wooly-wonders-v2';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/landing.html',
-  '/woolywonders.html',
-  '/auth.html',
-  '/customer.html',
-  '/admin.html',
-  '/dashboard.html',
-  '/assets/css/base.css',
-  '/assets/css/pages.css',
-  '/assets/js/ww-data.js',
-  '/assets/js/ui.js',
-  '/assets/js/store.js',
-  '/assets/js/admin.js',
-  '/assets/js/auth.js',
-  '/assets/js/landing.js',
-  '/assets/js/customer.js',
-  '/assets/js/dashboard.js',
-  '/assets/images/logo-social.png',
-  '/manifest.json'
+  './',
+  'landing.html',
+  'woolywonders.html',
+  'auth.html',
+  'customer.html',
+  'admin.html',
+  'dashboard.html',
+  'assets/css/base.css',
+  'assets/css/pages.css',
+  'assets/js/ww-data.js',
+  'assets/js/ui.js',
+  'assets/js/store.js',
+  'assets/js/admin.js',
+  'assets/js/auth.js',
+  'assets/js/landing.js',
+  'assets/js/customer.js',
+  'assets/js/dashboard.js',
+  'assets/images/logo-social.png',
+  'manifest.json'
 ];
 
 self.addEventListener('install', event => {
