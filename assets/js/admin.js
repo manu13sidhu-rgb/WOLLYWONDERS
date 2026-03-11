@@ -65,7 +65,32 @@ document.addEventListener("DOMContentLoaded", () => {
     footerForm: WWUI.qs("#footerForm"),
     ctaTitle: WWUI.qs("#ctaTitle"),
     ctaSub: WWUI.qs("#ctaSub"),
-    footerText: WWUI.qs("#footerText")
+    footerText: WWUI.qs("#footerText"),
+    heroImagePicker: WWUI.qs("#heroImagePicker"),
+    saveHeroImage: WWUI.qs("#saveHeroImage"),
+    orbitEditors: WWUI.qs("#orbitEditors"),
+    addOrbitChip: WWUI.qs("#addOrbitChip"),
+    saveOrbitChips: WWUI.qs("#saveOrbitChips"),
+    fnLabel: WWUI.qs("#fnLabel"),
+    fnValue: WWUI.qs("#fnValue"),
+    fnDesc: WWUI.qs("#fnDesc"),
+    saveFloatingNote: WWUI.qs("#saveFloatingNote"),
+    lkTitle: WWUI.qs("#lkTitle"),
+    lkSub: WWUI.qs("#lkSub"),
+    lookbookEditors: WWUI.qs("#lookbookEditors"),
+    addLookbook: WWUI.qs("#addLookbook"),
+    saveLookbook: WWUI.qs("#saveLookbook"),
+    storeHeroImagePicker: WWUI.qs("#storeHeroImagePicker"),
+    storeHeroCopy: WWUI.qs("#storeHeroCopy"),
+    saveStoreHero: WWUI.qs("#saveStoreHero"),
+    floatProductEditors: WWUI.qs("#floatProductEditors"),
+    addFloatProduct: WWUI.qs("#addFloatProduct"),
+    saveFloatProducts: WWUI.qs("#saveFloatProducts"),
+    dropRailEditors: WWUI.qs("#dropRailEditors"),
+    drTitle: WWUI.qs("#drTitle"),
+    drSub: WWUI.qs("#drSub"),
+    addDropCard: WWUI.qs("#addDropCard"),
+    saveDropRail: WWUI.qs("#saveDropRail")
   };
 
   function ordersSummary() {
@@ -328,6 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTickerEditors();
     renderTestimonialEditors();
     syncFooterForm();
+    renderNewEditors();
   }
 
   /* ---- Landing editor event handlers ---- */
@@ -379,6 +405,258 @@ document.addEventListener("DOMContentLoaded", () => {
     WWData.saveLanding(state.landing);
     WWUI.showToast("Footer & CTA saved.");
   });
+
+  /* ---- Image picker helper (reusable for any section) ---- */
+  function renderAllImagePicker(container, selectedImage, onSelect) {
+    if (!container) return;
+    const images = WWData.ALL_IMAGES;
+    container.innerHTML = "";
+    images.forEach((src) => {
+      const item = document.createElement("div");
+      item.className = "image-picker-item" + (src === selectedImage ? " is-active" : "");
+      item.innerHTML = '<img src="' + src + '" alt="Image option">';
+      item.addEventListener("click", () => {
+        WWUI.qsa(".image-picker-item", container).forEach((el) => el.classList.remove("is-active"));
+        item.classList.add("is-active");
+        if (onSelect) onSelect(src);
+      });
+      container.appendChild(item);
+    });
+  }
+
+  /* ---- Landing hero image editor ---- */
+  let selectedHeroImage = "";
+
+  function renderHeroImagePicker() {
+    selectedHeroImage = state.landing.heroImage || "";
+    renderAllImagePicker(els.heroImagePicker, selectedHeroImage, (src) => { selectedHeroImage = src; });
+  }
+
+  els.saveHeroImage?.addEventListener("click", () => {
+    state.landing.heroImage = selectedHeroImage;
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Landing hero image saved.");
+  });
+
+  /* ---- Orbit chips editor ---- */
+  function renderOrbitEditors() {
+    if (!els.orbitEditors) return;
+    els.orbitEditors.innerHTML = "";
+    (state.landing.orbitChips || []).forEach((chip, i) => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;gap:8px;align-items:center;";
+      row.innerHTML = `
+        <input class="input orbit-msg" value="${chip}" style="flex:1;" placeholder="Chip text">
+        <button class="icon-btn orbit-del" type="button" title="Remove">X</button>
+      `;
+      row.querySelector(".orbit-del").addEventListener("click", () => {
+        state.landing.orbitChips.splice(i, 1);
+        renderOrbitEditors();
+      });
+      els.orbitEditors.appendChild(row);
+    });
+  }
+
+  els.addOrbitChip?.addEventListener("click", () => {
+    state.landing.orbitChips = state.landing.orbitChips || [];
+    state.landing.orbitChips.push("New Chip");
+    renderOrbitEditors();
+  });
+
+  els.saveOrbitChips?.addEventListener("click", () => {
+    state.landing.orbitChips = WWUI.qsa(".orbit-msg", els.orbitEditors).map((el) => el.value.trim()).filter(Boolean);
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Orbit chips saved.");
+  });
+
+  /* ---- Floating note editor ---- */
+  function syncFloatingNote() {
+    const note = state.landing.floatingNote || {};
+    if (els.fnLabel) els.fnLabel.value = note.label || "";
+    if (els.fnValue) els.fnValue.value = note.value || "";
+    if (els.fnDesc) els.fnDesc.value = note.desc || "";
+  }
+
+  els.saveFloatingNote?.addEventListener("click", () => {
+    state.landing.floatingNote = {
+      label: els.fnLabel.value.trim(),
+      value: els.fnValue.value.trim(),
+      desc: els.fnDesc.value.trim()
+    };
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Floating note saved.");
+  });
+
+  /* ---- Lookbook editor ---- */
+  function renderLookbookEditors() {
+    if (!els.lookbookEditors) return;
+    if (els.lkTitle) els.lkTitle.value = state.landing.lookbookTitle || "";
+    if (els.lkSub) els.lkSub.value = state.landing.lookbookSub || "";
+    els.lookbookEditors.innerHTML = "";
+    (state.landing.lookbook || []).forEach((item, i) => {
+      const card = document.createElement("div");
+      card.className = "kpi";
+      card.style.padding = "14px";
+      card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <strong>Slide ${i + 1}</strong>
+          <button class="icon-btn lk-del" type="button" title="Remove">X</button>
+        </div>
+        <div class="field" style="margin-top:8px;"><label>Caption</label><input class="input lk-caption" value="${item.caption || ""}"></div>
+        <div class="field" style="margin-top:6px;"><label>Image</label></div>
+        <div class="lk-picker image-picker-grid" style="margin-top:4px;"></div>
+      `;
+      card.querySelector(".lk-del").addEventListener("click", () => {
+        state.landing.lookbook.splice(i, 1);
+        renderLookbookEditors();
+      });
+      els.lookbookEditors.appendChild(card);
+      const picker = card.querySelector(".lk-picker");
+      renderAllImagePicker(picker, item.image || "", (src) => {
+        state.landing.lookbook[i].image = src;
+      });
+    });
+  }
+
+  els.addLookbook?.addEventListener("click", () => {
+    state.landing.lookbook = state.landing.lookbook || [];
+    state.landing.lookbook.push({ image: "", caption: "New slide" });
+    renderLookbookEditors();
+  });
+
+  els.saveLookbook?.addEventListener("click", () => {
+    const cards = WWUI.qsa(".kpi", els.lookbookEditors);
+    state.landing.lookbook = (state.landing.lookbook || []).map((item, i) => ({
+      image: item.image,
+      caption: cards[i]?.querySelector(".lk-caption")?.value.trim() || ""
+    }));
+    state.landing.lookbookTitle = els.lkTitle?.value.trim() || "";
+    state.landing.lookbookSub = els.lkSub?.value.trim() || "";
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Lookbook saved.");
+  });
+
+  /* ---- Store hero image editor ---- */
+  let selectedStoreHeroImage = "";
+
+  function renderStoreHeroImagePicker() {
+    selectedStoreHeroImage = state.landing.storeHeroImage || "";
+    if (els.storeHeroCopy) els.storeHeroCopy.value = state.landing.storeHeroCopy || "";
+    renderAllImagePicker(els.storeHeroImagePicker, selectedStoreHeroImage, (src) => { selectedStoreHeroImage = src; });
+  }
+
+  els.saveStoreHero?.addEventListener("click", () => {
+    state.landing.storeHeroImage = selectedStoreHeroImage;
+    state.landing.storeHeroCopy = els.storeHeroCopy?.value.trim() || "";
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Store hero saved.");
+  });
+
+  /* ---- Floating product cards editor ---- */
+  function renderFloatProductEditors() {
+    if (!els.floatProductEditors) return;
+    els.floatProductEditors.innerHTML = "";
+    (state.landing.floatProducts || []).forEach((fp, i) => {
+      const card = document.createElement("div");
+      card.className = "kpi";
+      card.style.padding = "14px";
+      card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <strong>Card ${i + 1}</strong>
+          <button class="icon-btn fp-del" type="button" title="Remove">X</button>
+        </div>
+        <div class="field" style="margin-top:8px;"><label>Label</label><input class="input fp-label" value="${fp.label || ""}"></div>
+        <div class="field" style="margin-top:6px;"><label>Image</label></div>
+        <div class="fp-picker image-picker-grid" style="margin-top:4px;"></div>
+      `;
+      card.querySelector(".fp-del").addEventListener("click", () => {
+        state.landing.floatProducts.splice(i, 1);
+        renderFloatProductEditors();
+      });
+      els.floatProductEditors.appendChild(card);
+      const picker = card.querySelector(".fp-picker");
+      renderAllImagePicker(picker, fp.image || "", (src) => {
+        state.landing.floatProducts[i].image = src;
+      });
+    });
+  }
+
+  els.addFloatProduct?.addEventListener("click", () => {
+    state.landing.floatProducts = state.landing.floatProducts || [];
+    state.landing.floatProducts.push({ image: "", label: "New Card" });
+    renderFloatProductEditors();
+  });
+
+  els.saveFloatProducts?.addEventListener("click", () => {
+    const cards = WWUI.qsa(".kpi", els.floatProductEditors);
+    state.landing.floatProducts = (state.landing.floatProducts || []).map((fp, i) => ({
+      image: fp.image,
+      label: cards[i]?.querySelector(".fp-label")?.value.trim() || ""
+    }));
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Floating product cards saved.");
+  });
+
+  /* ---- Drop rail editor ---- */
+  function renderDropRailEditors() {
+    if (!els.dropRailEditors) return;
+    if (els.drTitle) els.drTitle.value = state.landing.dropRailTitle || "";
+    if (els.drSub) els.drSub.value = state.landing.dropRailSub || "";
+    els.dropRailEditors.innerHTML = "";
+    (state.landing.dropRail || []).forEach((dr, i) => {
+      const card = document.createElement("div");
+      card.className = "kpi";
+      card.style.padding = "14px";
+      card.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <strong>Drop ${i + 1}</strong>
+          <button class="icon-btn dr-del" type="button" title="Remove">X</button>
+        </div>
+        <div class="field" style="margin-top:8px;"><label>Label</label><input class="input dr-label" value="${dr.label || ""}"></div>
+        <div class="field" style="margin-top:6px;"><label>Image</label></div>
+        <div class="dr-picker image-picker-grid" style="margin-top:4px;"></div>
+      `;
+      card.querySelector(".dr-del").addEventListener("click", () => {
+        state.landing.dropRail.splice(i, 1);
+        renderDropRailEditors();
+      });
+      els.dropRailEditors.appendChild(card);
+      const picker = card.querySelector(".dr-picker");
+      renderAllImagePicker(picker, dr.image || "", (src) => {
+        state.landing.dropRail[i].image = src;
+      });
+    });
+  }
+
+  els.addDropCard?.addEventListener("click", () => {
+    state.landing.dropRail = state.landing.dropRail || [];
+    state.landing.dropRail.push({ image: "", label: "New Drop" });
+    renderDropRailEditors();
+  });
+
+  els.saveDropRail?.addEventListener("click", () => {
+    const cards = WWUI.qsa(".kpi", els.dropRailEditors);
+    state.landing.dropRail = (state.landing.dropRail || []).map((dr, i) => ({
+      image: dr.image,
+      label: cards[i]?.querySelector(".dr-label")?.value.trim() || ""
+    }));
+    state.landing.dropRailTitle = els.drTitle?.value.trim() || "";
+    state.landing.dropRailSub = els.drSub?.value.trim() || "";
+    WWData.saveLanding(state.landing);
+    WWUI.showToast("Drop rail saved.");
+  });
+
+  /* ---- Render all new editors inside renderLandingEditors ---- */
+
+  function renderNewEditors() {
+    renderHeroImagePicker();
+    renderOrbitEditors();
+    syncFloatingNote();
+    renderLookbookEditors();
+    renderStoreHeroImagePicker();
+    renderFloatProductEditors();
+    renderDropRailEditors();
+  }
 
   function openProductModal(product = null) {
     state.editingId = product?.id || null;

@@ -22,6 +22,61 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---- Hydrate landing page from editable data ---- */
   const landing = WWData.getLanding();
 
+  // Hero image
+  const heroImg = WWUI.qs(".hero-image-wrap img");
+  if (heroImg && landing.heroImage) heroImg.src = landing.heroImage;
+
+  // Orbit chips
+  const orbitChips = WWUI.qsa(".orbit-chip");
+  const chipData = landing.orbitChips || [];
+  orbitChips.forEach((chip, i) => {
+    if (i < chipData.length) {
+      chip.textContent = chipData[i];
+      chip.style.display = "";
+    } else {
+      chip.style.display = "none";
+    }
+  });
+
+  // Floating note
+  const fNote = WWUI.qs(".floating-note");
+  if (fNote && landing.floatingNote) {
+    const fnLabel = fNote.querySelector(".label");
+    const fnValue = fNote.querySelector(".value");
+    const fnDesc = fNote.querySelector(".mini");
+    if (fnLabel) fnLabel.textContent = landing.floatingNote.label || "";
+    if (fnValue) fnValue.textContent = landing.floatingNote.value || "";
+    if (fnDesc) fnDesc.textContent = landing.floatingNote.desc || "";
+  }
+
+  // Lookbook heading
+  const lookbookSection = WWUI.qs("#lookbook");
+  if (lookbookSection) {
+    const lkTitle = lookbookSection.querySelector(".section-title");
+    const lkSub = lookbookSection.querySelector(".section-copy");
+    if (lkTitle && landing.lookbookTitle) lkTitle.textContent = landing.lookbookTitle;
+    if (lkSub && landing.lookbookSub) lkSub.textContent = landing.lookbookSub;
+  }
+
+  // Lookbook slides
+  const lookbookThumbs = WWUI.qs("#lookbookThumbs");
+  const lookbookMain = WWUI.qs("#lookbookMain");
+  const lookbookCaption = WWUI.qs("#lookbookCaption");
+  if (lookbookThumbs && landing.lookbook && landing.lookbook.length) {
+    lookbookThumbs.innerHTML = "";
+    landing.lookbook.forEach((item, i) => {
+      const btn = document.createElement("button");
+      btn.className = "lookbook-thumb" + (i === 0 ? " is-active" : "");
+      btn.type = "button";
+      btn.dataset.lookbookSrc = item.image;
+      btn.dataset.lookbookCaption = item.caption;
+      btn.innerHTML = '<img src="' + item.image + '" alt="Lookbook thumb ' + (i + 1) + '">';
+      lookbookThumbs.appendChild(btn);
+    });
+    if (lookbookMain && landing.lookbook[0]) lookbookMain.src = landing.lookbook[0].image;
+    if (lookbookCaption && landing.lookbook[0]) lookbookCaption.textContent = landing.lookbook[0].caption;
+  }
+
   // Feature cards
   const featureCards = WWUI.qsa(".feature-card");
   const features = landing.features || [];

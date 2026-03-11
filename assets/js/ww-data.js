@@ -30,6 +30,59 @@
     "assets/images/products/IMG_2253.JPG"
   ];
 
+  const ALL_IMAGES = [
+    "assets/images/hero/hero-alt.webp",
+    "assets/images/hero/hero-main.webp",
+    "assets/images/hero/hero-wide.webp",
+    "assets/images/hero/img (1).webp",
+    "assets/images/hero/img.webp",
+    "assets/images/hero/IMG_7756.webp",
+    "assets/images/products/2.webp",
+    "assets/images/products/3.webp",
+    "assets/images/products/4.webp",
+    "assets/images/products/5.webp",
+    "assets/images/products/7.webp",
+    "assets/images/products/8.webp",
+    "assets/images/products/9.webp",
+    "assets/images/products/10.webp",
+    "assets/images/products/11.webp",
+    "assets/images/products/12.webp",
+    "assets/images/products/13.webp",
+    "assets/images/products/14.webp",
+    "assets/images/products/15.webp",
+    "assets/images/products/IMG_2249.JPG",
+    "assets/images/products/IMG_2250.JPG",
+    "assets/images/products/IMG_2251.JPG",
+    "assets/images/products/IMG_2252.JPG",
+    "assets/images/products/IMG_2253.JPG",
+    "assets/images/products/IMG_2254.JPG",
+    "assets/images/products/IMG_2255.JPG",
+    "assets/images/products/IMG_2257.JPG",
+    "assets/images/products/IMG_2258.JPG",
+    "assets/images/products/IMG_2259.JPG",
+    "assets/images/products/IMG_2260.JPG",
+    "assets/images/products/IMG_2261.JPG",
+    "assets/images/products/IMG_2262.JPG",
+    "assets/images/products/IMG_2263.JPG",
+    "assets/images/products/IMG_2264.JPG",
+    "assets/images/products/IMG_2265.JPG",
+    "assets/images/products/IMG_2266.JPG",
+    "assets/images/products/IMG_2267.JPG",
+    "assets/images/products/IMG_2269.JPG",
+    "assets/images/products/IMG_2270.JPG",
+    "assets/images/products/Pink and blue.webp",
+    "assets/images/products/27_fe5a7423-887b-469e-9c4d-d97c0931477f.webp",
+    "assets/images/products/28_0ddcf368-6f9b-4ea4-b709-6cd061eb4afc.webp",
+    "assets/images/products/29_ccda3a70-7c79-45b5-b7e7-8e7cab9242b1.webp",
+    "assets/images/products/48_2ec52c94-7eea-4a15-a10a-df1c1a93a639.webp",
+    "assets/images/products/49_2f0c3e6e-fe6e-4c1b-9ead-e422ac1140c3.webp",
+    "assets/images/products/50_de4c7a31-9a99-425b-9855-bd828a1a5216.webp",
+    "assets/images/products/51_f8f94b39-2be2-48ed-bc82-ee096b7cf8a6.webp",
+    "assets/images/products/52_40e9277c-be2c-4c28-9456-46299cc89802.webp",
+    "assets/images/products/FUNCAP41_a.webp",
+    "assets/images/products/FUNCAP41_c.webp"
+  ];
+
   const DEFAULT_USERS = [
     { id: 1, name: "Wooly Admin", email: "admin@woolywonders.com", password: "woolyadmin", role: "admin" },
     { id: 2, name: "Mia Harper", email: "mia@woolywonders.com", password: "wooly123", role: "customer" }
@@ -60,6 +113,36 @@
   };
 
   const DEFAULT_LANDING = {
+    heroImage: "assets/images/hero/hero-alt.webp",
+    orbitChips: ["Merino Blend", "Gift Ready", "Studio Curated"],
+    floatingNote: { label: "Signature Drop", value: "Nordic Storyline Set", desc: "Limited handcrafted release with recyclable gift packaging." },
+    lookbook: [
+      { image: "assets/images/products/IMG_2251.JPG", caption: "Winter Capsule - Minimal Ivory Mood" },
+      { image: "assets/images/products/IMG_2254.JPG", caption: "Soft Blush Story - Limited Holiday Pair" },
+      { image: "assets/images/products/IMG_2261.JPG", caption: "Cloud Knit Essential - Everyday Set" },
+      { image: "assets/images/products/IMG_2267.JPG", caption: "Pastel Layer Edit - Cozy Weekend Drop" },
+      { image: "assets/images/products/11.webp", caption: "Funkrafts Pop - Playful Color Release" },
+      { image: "assets/images/products/Pink and blue.webp", caption: "Pink-Blue Duo - Gift Favorite" }
+    ],
+    lookbookTitle: "Interactive lookbook studio",
+    lookbookSub: "Tap any frame to switch the hero scene. This gives your store a richer, editorial feel with real photos from your collection.",
+    storeHeroImage: "assets/images/hero/hero-main.webp",
+    storeHeroCopy: "Every product is edited by our studio team for fit, warmth, and visual harmony. Build a matching gift in under 3 minutes.",
+    floatProducts: [
+      { image: "assets/images/products/IMG_2261.JPG", label: "Cloud Knit Set" },
+      { image: "assets/images/products/11.webp", label: "Playful Cap Pair" },
+      { image: "assets/images/products/IMG_2254.JPG", label: "Gift Story Box" }
+    ],
+    dropRail: [
+      { image: "assets/images/products/IMG_2249.JPG", label: "Ivory Knit" },
+      { image: "assets/images/products/IMG_2250.JPG", label: "Soft Blush" },
+      { image: "assets/images/products/IMG_2252.JPG", label: "Neutral Wrap" },
+      { image: "assets/images/products/IMG_2259.JPG", label: "Baby Bootie" },
+      { image: "assets/images/products/IMG_2265.JPG", label: "Minimal Set" },
+      { image: "assets/images/products/12.webp", label: "Funkrafts Pop" }
+    ],
+    dropRailTitle: "Fresh drops this week",
+    dropRailSub: "New visual arrivals from your woolly library",
     features: [
       { icon: "MW", title: "100% Merino Comfort", desc: "Every piece uses breathable fibers selected for newborn-safe softness and thermal balance." },
       { icon: "FX", title: "Faster Fulfillment", desc: "Smart stock routing keeps dispatch faster and more predictable for urgent gift moments." },
@@ -186,7 +269,8 @@
   }
 
   function getLanding() {
-    return read(KEYS.landing, DEFAULT_LANDING);
+    const stored = read(KEYS.landing, DEFAULT_LANDING);
+    return { ...DEFAULT_LANDING, ...stored };
   }
 
   function saveLanding(data) {
@@ -270,6 +354,7 @@
   window.WWData = {
     KEYS,
     PRODUCT_IMAGES,
+    ALL_IMAGES,
     DEFAULT_PRODUCTS,
     DEFAULT_HERO,
     DEFAULT_LANDING,

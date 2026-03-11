@@ -195,6 +195,117 @@
         <button class="btn btn-primary magnetic" type="submit">Save Footer &amp; CTA</button>
       </form>
     </section>
+
+    <!-- ===== LANDING HERO IMAGE EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Landing hero image</h2>
+      <p class="mini" style="margin-top:8px;">Change the main hero photo on the landing page.</p>
+      <div id="heroImagePicker" class="image-picker-grid" style="margin-top:12px;"></div>
+      <button id="saveHeroImage" class="btn btn-primary magnetic" type="button" style="margin-top:12px;">Save Hero Image</button>
+    </section>
+
+    <!-- ===== ORBIT CHIPS EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Floating chips (orbit labels)</h2>
+      <p class="mini" style="margin-top:8px;">Edit or remove the floating label chips that overlay the hero image on the landing page.</p>
+      <div id="orbitEditors" style="margin-top:12px;display:grid;gap:8px;"></div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button id="addOrbitChip" class="btn btn-outline" type="button">+ Add Chip</button>
+        <button id="saveOrbitChips" class="btn btn-primary magnetic" type="button">Save Chips</button>
+      </div>
+    </section>
+
+    <!-- ===== FLOATING NOTE EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Floating note card</h2>
+      <p class="mini" style="margin-top:8px;">Edit the floating "Signature Drop" note on the landing hero.</p>
+      <div style="margin-top:12px;display:grid;gap:10px;">
+        <div class="checkout-grid">
+          <div class="field">
+            <label for="fnLabel">Label</label>
+            <input id="fnLabel" class="input">
+          </div>
+          <div class="field">
+            <label for="fnValue">Value</label>
+            <input id="fnValue" class="input">
+          </div>
+        </div>
+        <div class="field">
+          <label for="fnDesc">Description</label>
+          <textarea id="fnDesc" class="textarea"></textarea>
+        </div>
+        <button id="saveFloatingNote" class="btn btn-primary magnetic" type="button">Save Floating Note</button>
+      </div>
+    </section>
+
+    <!-- ===== LOOKBOOK EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Lookbook editor</h2>
+      <p class="mini" style="margin-top:8px;">Edit the lookbook slideshow images and captions on the landing page.</p>
+      <div style="margin-top:12px;display:grid;gap:10px;">
+        <div class="checkout-grid">
+          <div class="field">
+            <label for="lkTitle">Lookbook heading</label>
+            <input id="lkTitle" class="input">
+          </div>
+          <div class="field">
+            <label for="lkSub">Lookbook subtext</label>
+            <input id="lkSub" class="input">
+          </div>
+        </div>
+      </div>
+      <div id="lookbookEditors" style="margin-top:12px;display:grid;gap:14px;"></div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button id="addLookbook" class="btn btn-outline" type="button">+ Add Slide</button>
+        <button id="saveLookbook" class="btn btn-primary magnetic" type="button">Save Lookbook</button>
+      </div>
+    </section>
+
+    <!-- ===== STORE HERO IMAGE EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Store hero image</h2>
+      <p class="mini" style="margin-top:8px;">Change the hero photo shown on the store page sidebar.</p>
+      <div id="storeHeroImagePicker" class="image-picker-grid" style="margin-top:12px;"></div>
+      <div class="field" style="margin-top:10px;">
+        <label for="storeHeroCopy">Store hero copy</label>
+        <textarea id="storeHeroCopy" class="textarea"></textarea>
+      </div>
+      <button id="saveStoreHero" class="btn btn-primary magnetic" type="button" style="margin-top:12px;">Save Store Hero</button>
+    </section>
+
+    <!-- ===== FLOATING PRODUCT CARDS EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Store floating product cards</h2>
+      <p class="mini" style="margin-top:8px;">Edit the 3 floating product cards that overlay the store hero.</p>
+      <div id="floatProductEditors" style="margin-top:12px;display:grid;gap:14px;"></div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button id="addFloatProduct" class="btn btn-outline" type="button">+ Add Card</button>
+        <button id="saveFloatProducts" class="btn btn-primary magnetic" type="button">Save Float Cards</button>
+      </div>
+    </section>
+
+    <!-- ===== DROP RAIL EDITOR ===== -->
+    <section class="hero-editor reveal">
+      <h2 class="section-title" style="font-size:clamp(1.5rem,2.6vw,2rem);">Drop rail editor</h2>
+      <p class="mini" style="margin-top:8px;">Edit the scrolling product cards ("Fresh drops this week") on the store page.</p>
+      <div style="margin-top:12px;display:grid;gap:10px;">
+        <div class="checkout-grid">
+          <div class="field">
+            <label for="drTitle">Rail heading</label>
+            <input id="drTitle" class="input">
+          </div>
+          <div class="field">
+            <label for="drSub">Rail subtext</label>
+            <input id="drSub" class="input">
+          </div>
+        </div>
+      </div>
+      <div id="dropRailEditors" style="margin-top:12px;display:grid;gap:14px;"></div>
+      <div style="margin-top:8px;display:flex;gap:8px;">
+        <button id="addDropCard" class="btn btn-outline" type="button">+ Add Card</button>
+        <button id="saveDropRail" class="btn btn-primary magnetic" type="button">Save Drop Rail</button>
+      </div>
+    </section>
   </main>
 
   <div id="productModal" class="modal-backdrop">

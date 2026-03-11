@@ -54,6 +54,48 @@ document.addEventListener("DOMContentLoaded", () => {
   if (storeSub) storeSub.textContent = hero.sub;
   if (storePrimaryCta) storePrimaryCta.textContent = hero.cta;
 
+  /* ---- Hydrate store visuals from editable data ---- */
+  const landing = WWData.getLanding();
+
+  // Store hero image & copy
+  const storeHighlightImg = document.querySelector(".store-highlight img");
+  const storeHighlightCopy = document.querySelector(".store-highlight .copy");
+  if (storeHighlightImg && landing.storeHeroImage) storeHighlightImg.src = landing.storeHeroImage;
+  if (storeHighlightCopy && landing.storeHeroCopy) storeHighlightCopy.textContent = landing.storeHeroCopy;
+
+  // Floating product cards
+  const fpClasses = ["fp-a", "fp-b", "fp-c"];
+  (landing.floatProducts || []).forEach((fp, i) => {
+    if (i >= fpClasses.length) return;
+    const el = document.querySelector(".float-product." + fpClasses[i]);
+    if (!el) return;
+    const img = el.querySelector("img");
+    const span = el.querySelector("span");
+    if (img && fp.image) img.src = fp.image;
+    if (span && fp.label) span.textContent = fp.label;
+  });
+
+  // Drop rail
+  const dropHead = document.querySelector(".drop-head");
+  if (dropHead) {
+    const drTitle = dropHead.querySelector(".section-title");
+    const drSub = dropHead.querySelector(".mini");
+    if (drTitle && landing.dropRailTitle) drTitle.textContent = landing.dropRailTitle;
+    if (drSub && landing.dropRailSub) drSub.textContent = landing.dropRailSub;
+  }
+  const dropTrackEl = document.querySelector("#dropTrack");
+  if (dropTrackEl && landing.dropRail && landing.dropRail.length) {
+    dropTrackEl.innerHTML = "";
+    const items = landing.dropRail;
+    // Duplicate for seamless scroll
+    [...items, ...items].forEach((dr, idx) => {
+      const article = document.createElement("article");
+      article.className = "drop-card";
+      article.innerHTML = '<img src="' + dr.image + '" alt="drop ' + (idx + 1) + '"><span>' + dr.label + '</span>';
+      dropTrackEl.appendChild(article);
+    });
+  }
+
   const state = {
     products: WWData.getProducts(),
     cart: normalizeCart(JSON.parse(localStorage.getItem(WWData.KEYS.cart) || "[]")),
